@@ -14,3 +14,34 @@ the impact of different game parameters.
 5. During the "second turn", players can choose to re-roll one, or both, of the dices once, but must keep the second result of this re-roll.
 
    Assume that players have no information about the dice roll outcomes of the opponents during the entire game.
+
+   ## Challenge No. 1
+   Under the assumption that no one chooses to reroll in the second turn, calculate the expected score of one game. Show some statistics and metrics on the distribution of the outcome of this game.
+   ### Solution:
+   The implementation of a Monte Carlo method to calculate the expectation value of the score under the prescribed assumptions above is straightforward. In the source code, "zarconia_monte_carlo.py", we have implemented a function called "strategy1_score" which does this.
+   But more interestingly, one can derive a simple mathematical expression for the expectation value of the score, $E[s]$. Naturally,
+   ```math
+   E[s] = \sum^N_{x,y=1} P(x,y)*[x + y + \text{bonus}(x,y) - \text{penalty}(x,y)]
+   ```
+   where $N$ is the highest number on the dice, $x$ and $y$ are the outcomes after rolling the two dices, and $\text{bonus}(x,y)$ and $\text{penalty}(x,y)$ are the functions yielding the bonus and penalty scores, respectively. In particular,
+   ```math
+   \text{bonus}(x,y) = \begin{cases}
+   x + y \ , & \text{if } \|x-y\| \in \{1, N-1\} \\
+   0 \, & \text{otherwise}
+   \end{cases}
+   ```
+
+   ```math
+\text{penalty}(x,y) = \begin{cases}
+   x^2 \ , & \text{if } x=y \\
+   0 \, & \text{otherwise}
+   \end{cases}
+   ```
+
+Simplifying the expression for $E[s]$ yields,
+```math
+E[s] = \left(\frac{N+1}{N}\right)*\left( \frac{4N+11}{6}\right)
+```
+We have given a detailed derivation in the document "Notes_Zarconia_game.pdf".
+
+For N=10, the analytical expression for the expectation score is 9.35, which is close to the Monte Carlo result (i.e. 9.33).
