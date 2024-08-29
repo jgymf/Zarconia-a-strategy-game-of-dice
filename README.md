@@ -32,7 +32,7 @@ the impact of different game parameters.
    ```
 
    ```math
-\text{penalty}(x,y) = \begin{cases}
+   \text{penalty}(x,y) = \begin{cases}
    x^2 \ , & \text{if } x=y \\
    0 \, & \text{otherwise}
    \end{cases}
