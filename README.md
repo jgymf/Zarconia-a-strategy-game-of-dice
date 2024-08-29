@@ -40,8 +40,8 @@ the impact of different game parameters.
 
 Simplifying the expression for $E[s]$ yields,
 ```math
-E[s] = \left(\frac{N+1}{N}\right)*\left( \frac{4N+11}{6}\right)
+E[s] = \left(\frac{N+1}{N}\right)\cdot\left( \frac{4N+11}{6}\right) - \frac{3}{2}\cdot \delta_{N,2}
 ```
-We have given a detailed derivation in the document "Notes_Zarconia_game.pdf".
+where $\delta_{N,2}$ is the Kronecker delta. We have given a detailed derivation in the document "Notes_Zarconia_game.pdf".
 
 For N=10, the analytical expression for the expectation score is 9.35, which is close to the Monte Carlo result (i.e. 9.33).
